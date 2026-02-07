@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - 5 Sections</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="scroll-container">
+        <!-- Section 1 -->
+        <section id="section1">
+            <div class="section-content">
+                <h1>Our First Memory</h1>
+                <div class="content-row">
+                    <div class="image-container">
+                        <img src="images/e52b20909fef92fe32f42b0ccb8c57a6.jpg" alt="Memory 1">
+                    </div>
+                    <div class="letter-container">
+                        <div class="letter-content">
+                            <p>Hello bb,</p>
+                            <p>Sorry sa mga nasabi ko na hindi ko po dapat sinabi...</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#section2" class="arrow-down">
+                <span>❤</span>
+            </a>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="section2">
+            <div class="section-content">
+                <h1>A Special Moment</h1>
+                <div class="content-row">
+                    <div class="image-container">
+                        <img src="images/78800c61b7f69f7e1a3d882518d05723.jpg" alt="Memory 2">
+                    </div>
+                    <div class="letter-container">
+                        <div class="letter-content">
+                            <p></p>
+                            <p>Hindi ko po naisip mararamdaman mo bago ako nagsalita...</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#section3" class="arrow-down">
+                <span>❤</span>
+            </a>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section3">
+            <div class="section-content">
+                <h1>Together Forever</h1>
+                <div class="content-row">
+                    <div class="image-container">
+                        <img src="images/download (1).png" alt="Memory 3">
+                    </div>
+                    <div class="letter-container">
+                        <div class="letter-content">
+                            <p>Mahal,</p>
+                            <p>This may not be acceptable, but I hope you can accept my apology.? </p>
+                            <p><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#section4" class="arrow-down">
+                <span>❤</span>
+            </a>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section4">
+            <div class="section-content">
+                <h1>Our Adventure</h1>
+                <div class="content-row">
+                    <div class="image-container">
+                        <img src="images/1a593f678d8f99aa350ac80d75faaaaa.jpg" alt="Memory 4">
+                    </div>
+                    <div class="letter-container">
+                        <div class="letter-content">
+                            <p></p>
+                            <p>I hope we can spend Valentine's Day together again.</p>
+                            <p><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#section5" class="arrow-down">
+                <span>❤</span>
+            </a>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="section5">
+            <div class="section-content">
+                <h1>Happy Valentine's Day</h1>
+                <div class="content-row">
+                    <div class="image-container">
+                        <img src="images/424e17d7-8e7a-4c85-8a27-13a4520819fa.jpg" alt="Memory 5">
+                    </div>
+                    <div class="letter-container">
+                        <div class="letter-content">
+                            <p>ASIE LEA LLANTO,</p>
+                            <p>Will you be my Valentine? 💌</p>
+                            <p><br></p>
+                            <div class="button-container">
+                                <button id="yesBtn" class="valentine-btn yes-btn">Yes! 💕</button>
+                                <button id="noBtn" class="valentine-btn no-btn">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="confetti-container"></div>
+            <div id="response-message" class="hidden"></div>
+        </section>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const responseMessage = document.getElementById('response-message');
+        const confettiContainer = document.getElementById('confetti-container');
+        const section5 = document.getElementById('section5');
+
+        // Yes button - celebration effect
+        yesBtn.addEventListener('click', function() {
+            // Create confetti
+            createConfetti();
+            
+            // Show success message
+            responseMessage.textContent = '🎉 Yey! LOVE U BB!! 💖';
+            responseMessage.className = 'response-message success-message';
+            
+            // Add celebration animation to section
+            section5.classList.add('celebrate');
+            
+            // Hide buttons
+            document.querySelector('.button-container').style.display = 'none';
+            
+            // Play heart animation
+            createHearts();
+        });
+
+        // No button - runs away effect
+        let noClickCount = 0;
+        noBtn.addEventListener('mouseover', function() {
+            const randomX = Math.random() * (window.innerWidth - 150);
+            const randomY = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.transition = 'all 0.3s ease';
+            
+            noClickCount++;
+            if (noClickCount === 1) {
+                noBtn.textContent = 'Wait... No?';
+            } else if (noClickCount === 2) {
+                noBtn.textContent = 'Bakit? 🥺';
+            } else if (noClickCount === 3) {
+                noBtn.textContent = 'Bakit nga? 💔';
+            } else if (noClickCount > 3) {
+                noBtn.textContent = 'Bawal! 😊';
+            }
+        });
+
+        noBtn.addEventListener('click', function() {
+            responseMessage.textContent = '💔 Aww... but I\'ll wait for you! 🥺';
+            responseMessage.className = 'response-message sad-message';
+            createTears();
+        });
+
+        // Create confetti
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = ['#ff4d6d', '#ff758f', '#ffd9eb', '#d63384', '#ffcce5'][Math.floor(Math.random() * 5)];
+                confettiContainer.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 4000);
+            }
+        }
+
+        // Create floating hearts
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
+                    heart.textContent = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    confettiContainer.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // Create tears
+        function createTears() {
+            for (let i = 0; i < 10; i++) {
+                const tear = document.createElement('div');
+                tear.className = 'tear';
+                tear.textContent = '💧';
+                tear.style.left = Math.random() * 100 + '%';
+                tear.style.animationDelay = Math.random() * 2 + 's';
+                confettiContainer.appendChild(tear);
+                
+                setTimeout(() => tear.remove(), 3000);
+            }
+        }
+    </script>
+
+</body>
+</html>

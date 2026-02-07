@@ -1,0 +1,435 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 100%);
+    scroll-behavior: smooth;
+}
+
+.scroll-container {
+    width: 100%;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    background: linear-gradient(135deg, #fff5f9 0%, #ffe8f1 50%, #ffd9eb 100%);
+}
+
+section:nth-child(even) {
+    background: linear-gradient(135deg, #ffe8f1 0%, #ffd9eb 50%, #ffcce5 100%);
+}
+
+.section-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Flexbox Row Container for Image and Letter */
+.content-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* Makes both items same height */
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #d63384;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.1);
+    font-family: 'Brush Script MT', cursive;
+}
+
+/* Square Image Container */
+.image-container {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below content size */
+    aspect-ratio: 1 / 1; /* Perfect square ratio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 8px solid #fff;
+    box-shadow: 0 10px 30px rgba(214, 51, 132, 0.3);
+    background: #f9f9f9;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops to fill square without distortion */
+    object-position: center; /* Centers the image */
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+/* Vintage Letter Container */
+.letter-container {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below content size */
+    background: linear-gradient(135deg, #fdfaf5 0%, #f9f3e8 100%);
+    border: 3px solid #d4a574;
+    border-radius: 5px;
+    padding: 40px;
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0 50px rgba(212, 165, 116, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.letter-container::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid #d4a574;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+.letter-content {
+    font-family: 'Courier New', 'Courier', monospace;
+    color: #4a3f35;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.letter-content p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.letter-content p:first-child {
+    font-style: italic;
+    color: #d63384;
+    font-weight: bold;
+}
+
+.letter-content p:last-child {
+    text-align: right;
+    font-style: italic;
+    margin-top: 30px;
+}
+
+/* Navigation Arrow */
+.arrow-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+    transition: all 0.3s ease;
+    animation: bounce 2s infinite;
+}
+
+.arrow-down span {
+    font-size: 2rem;
+    color: white;
+}
+
+.arrow-down:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-15px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .content-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .image-container {
+        max-width: 500px;
+        width: 100%;
+    }
+    
+    .letter-container {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .image-container {
+        max-width: 400px;
+    }
+    
+    .letter-container {
+        max-width: 400px;
+        padding: 25px;
+    }
+    
+    .letter-content {
+        font-size: 1rem;
+    }
+    
+    .arrow-down {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .arrow-down span {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-container {
+        max-width: 320px;
+    }
+    
+    .letter-container {
+        max-width: 320px;
+        padding: 20px;
+    }
+    
+    .letter-content {
+        font-size: 0.95rem;
+    }
+}
+
+/* Valentine Buttons */
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.valentine-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.yes-btn {
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+    color: white;
+}
+
+.yes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
+}
+
+.yes-btn:active {
+    transform: scale(1.05);
+}
+
+.no-btn {
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+    color: #666;
+    position: relative;
+}
+
+.no-btn:hover {
+    background: linear-gradient(135deg, #d0d0d0 0%, #e5e5e5 100%);
+}
+
+/* Response Messages */
+.response-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 20px;
+    z-index: 1000;
+    animation: fadeInScale 0.5s ease;
+    text-align: center;
+    max-width: 80%;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+    color: white;
+    box-shadow: 0 10px 40px rgba(255, 77, 109, 0.5);
+}
+
+.sad-message {
+    background: linear-gradient(135deg, #a0a0a0 0%, #c0c0c0 100%);
+    color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Confetti Container */
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+/* Confetti Animation */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        top: -10px;
+        transform: rotateZ(0deg);
+    }
+    100% {
+        top: 100vh;
+        transform: rotateZ(720deg);
+    }
+}
+
+/* Floating Hearts */
+.floating-heart {
+    position: absolute;
+    font-size: 2rem;
+    bottom: -50px;
+    animation: floatUp 4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: -50px;
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+    }
+    100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(30px) rotate(360deg);
+    }
+}
+
+/* Tears Animation */
+.tear {
+    position: absolute;
+    font-size: 1.5rem;
+    top: -50px;
+    animation: tearFall 3s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes tearFall {
+    0% {
+        top: -50px;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+/* Celebration Effect for Section */
+section.celebrate {
+    animation: celebratePulse 1s ease-in-out;
+}
+
+@keyframes celebratePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Fade in scale animation */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Mobile Responsive for Buttons */
+@media (max-width: 480px) {
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .valentine-btn {
+        width: 100%;
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .response-message {
+        font-size: 1.3rem;
+        padding: 20px 30px;
+    }
+}
